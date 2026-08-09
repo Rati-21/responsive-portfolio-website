@@ -15,7 +15,7 @@ Developed as part of the **WPR171** coursework.
 | **Member 2** | Styling & Design Lead | Global CSS (`style.css`), typography, site branding, header/footer styling, and Portfolio page (`portfolio.html`). |
 | **Member 3** | Forms & Interactivity Lead | Contact page (`contact.html`), contact form setup, form styling, and JS interactivity extensions. |
 | **Member 4** | Layout & Grid Specialist | Multi-column layouts using CSS Grid & Flexbox, media queries for mobile-first responsiveness, and mobile navigation menu[cite: 1]. |
-| **Member 5** | Optimization, QA & Presentation | Media asset collection/compression, site performance optimization, cross-device testing, and presentation co-lead[cite: 1]. |
+| **Member 5** | Optimization, QA & Presentation | Media asset collection/compression, site performance optimization, cross-device testing, and presentation co-lead. |
 
 ---
 
