@@ -16,6 +16,7 @@ body {
     background-color: #f8fafc;
     color: #1e293b;
     line-height: 1.6;
+    padding: 0;
 }
 
 /*
@@ -82,29 +83,23 @@ Container
 .grid-container {
     display: grid;
     grid-template-columns: minmax(0, 1fr);
-    grid-template-rows: auto auto auto auto;
+    grid-template-rows: auto auto auto;
     grid-template-areas:
-        "header"
-        "hero-sec"
-        "footer";
-    gap: 2rem;
+        "header header"
+        "hero-sec hero-sec"
+        "footer footer";
     min-height: 100vh;
     background-color: #fff;
 }
 
-.grid-container > * {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-width: 0;
-
-  font-size: clamp(
-    1em,
-    1.5em,
-    2em
-    );
+main {
+    grid-area: hero-sec;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
-
 
 
 /*
@@ -125,7 +120,6 @@ header {
 
 
 .navbar {
-    grid-area: navigation;
     width: 90%;
     max-width: var(--max-width);
     min-height: 75px;
@@ -134,14 +128,17 @@ header {
     align-items: center;
     justify-content: space-between;
 }
+
 .logo {
     font-size: 1.6rem;
     font-weight: bold;
     color: var(--white);
 }
+
 .logo span {
     color: var(--accent);
 }
+
 .nav-links {
     display: flex;
     gap: 30px;
@@ -149,13 +146,15 @@ header {
     margin: 0;
     padding: 0;
 }
+
 .nav-links a {
     color: var(--white);
     font-weight: 500;
     transition: var(--transition);
+    /*pill button design*/
     border-radius: 999px;
     padding: 0.5rem 1.2rem;
-
+    border: 1px solid #333;
 }
 .nav-links a:hover{
     color: var(--accent);
@@ -164,6 +163,7 @@ header {
 /*
 PORTFOLIO
 */
+
 .portfolio {
     grid-area: hero-sec;
     width: 100%;
@@ -220,28 +220,6 @@ PROJECT CARDS
 .project-card:hover {
     transform: translateY(-8px);
     box-shadow: 0 15px 35px rgba(15, 23, 42, 0.15);
-}
-
-
-
-
-/*
-INTERACTION
-*/
-
-
-.btn {
-    display: inline-block;
-    padding: 12px 24px;
-    background-color: var(--secondary);
-    color: var(--white);
-    border-radius: 8px;
-    font-weight: 600;
-    transition: var(--transition);
-}
-.btn:hover {
-    background-color: #4f46e5;
-    transform: translateY(-3px);
 }
 
 /*
@@ -318,8 +296,10 @@ About Page
 }
 
 /*
-Buttons
+INTERACTION
 */
+
+
 .btn {
     display: inline-block;
     padding: 12px 24px;
@@ -333,6 +313,7 @@ Buttons
     background-color: #4f46e5;
     transform: translateY(-3px);
 }
+
 .primary-btn {
     background-color: var(--primary);
 }
@@ -343,6 +324,7 @@ Buttons
 /*
 Footer
 */
+
 footer,
 .footer {
     grid-area: footer;
@@ -371,7 +353,7 @@ RESPONSIVE DESIGN
         text-align: center;
     }
 }
-@media (max-width: 600px) {
+@media (max-width: 670px) {
     .grid-container {
         gap: 1rem;
     }
@@ -403,4 +385,10 @@ RESPONSIVE DESIGN
         max-width: 100%;
         text-align: center;
     }
+}
+
+@media (max-width: 768px) {
+  .contact-form-wrapper {
+    order: -1;
+  }
 }
