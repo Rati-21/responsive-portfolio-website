@@ -161,6 +161,45 @@ header {
 }
 
 /*
+Menu button
+*/
+
+.menu-toggle-input {
+    display: none;
+}
+ 
+.menu-toggle {
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 28px;
+    height: 20px;
+    cursor: pointer;
+    z-index: 1100;
+}
+ 
+.menu-toggle span {
+    display: block;
+    height: 3px;
+    width: 100%;
+    background-color: var(--white);
+    border-radius: 2px;
+    transition: var(--transition);
+}
+
+.menu-toggle-input:checked + .menu-toggle span:nth-child(1) {
+    transform: translateY(8.5px) rotate(45deg);
+}
+ 
+.menu-toggle-input:checked + .menu-toggle span:nth-child(2) {
+    opacity: 0;
+}
+ 
+.menu-toggle-input:checked + .menu-toggle span:nth-child(3) {
+    transform: translateY(-8.5px) rotate(-45deg);
+}
+ 
+/*
 PORTFOLIO
 */
 
@@ -341,7 +380,7 @@ footer p,
 /*
 RESPONSIVE DESIGN 
 */
-@media (max-width: 900px) {
+@media (min-width:671px) and (max-width: 900px) {
     .projects {
         grid-template-columns: repeat(2, 1fr);
     }
@@ -367,10 +406,20 @@ RESPONSIVE DESIGN
         gap: 15px;
     }
     .nav-links {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
         flex-direction: column;
         gap: 15px;
-        flex-wrap: wrap;
-        justify-content: center;
+        background-color: var(--primary);
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease;
+    }
+    .menu-toggle-input:checked ~ .nav-links {
+        max-height: 400px;
+        padding: 10px 0;
     }
     .projects {
         grid-template-columns: 1fr;
@@ -385,7 +434,21 @@ RESPONSIVE DESIGN
         max-width: 100%;
         text-align: center;
     }
+
+  .menu-toggle {
+    display: flex;
 }
+}
+@media (max-width: 400px) {
+    .timeline {
+        flex-direction: column;
+    }
+    .timeline-item {
+        margin-right: 0;
+        margin-bottom: 0.5rem;
+    }
+}
+
 
 @media (max-width: 768px) {
   .contact-form-wrapper {
