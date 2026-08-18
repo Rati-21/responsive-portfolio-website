@@ -54,7 +54,7 @@ GENERAL STYLES
 }
 
 section {
-    padding: 80px 0;
+    padding: 40px 0;
 }
 
 h1,
@@ -123,6 +123,7 @@ header {
 
 
 .navbar {
+    position: relative;
     width: 90%;
     max-width: var(--max-width);
     min-height: 75px;
@@ -143,11 +144,25 @@ header {
 }
 
 .nav-links {
-    display: flex;
-    gap: 30px;
     list-style: none;
     margin: 0;
     padding: 0;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    background-color: var(--primary);
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+}
+
+.menu-toggle-input:checked ~ .nav-links {
+    max-height: 400px;
+    padding: 10px 0;
 }
 
 .nav-links a {
@@ -172,7 +187,7 @@ Menu button
 }
  
 .menu-toggle {
-    display: none;
+    display: flex;
     flex-direction: column;
     justify-content: space-between;
     width: 28px;
@@ -216,7 +231,7 @@ PORTFOLIO
     margin-bottom: 50px;
 }
 .section-heading h1 {
-    font-size: 3rem;
+    font-size: 2rem;
     margin-bottom: 15px;
 }
 .section-heading p {
@@ -225,7 +240,7 @@ PORTFOLIO
 }
 .projects {
     display: grid;
-    grid-template-columns: repeat(3,1fr);
+    grid-template-columns: 1fr;
     gap: 30px;
 }
 
@@ -289,8 +304,9 @@ Home Page
 }
 .hero-btn {
     display: flex;
-    justify-content: center;
-    gap: 1.5rem;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
 }
 
 /*
@@ -313,6 +329,7 @@ About Page
  
 .timeline {
     display: flex;
+    flex-direction: column;
     align-items: flex-start;
     margin-bottom: 2rem;
 }
@@ -381,78 +398,6 @@ footer p,
 }
 
 /*
-RESPONSIVE DESIGN 
-*/
-@media (min-width:671px) and (max-width: 900px) {
-    .projects {
-        grid-template-columns: repeat(2, 1fr);
-    }
-    .grid-container {
-        gap: 1.5rem;
-    }
-    header {
-        align-items: center;
-        text-align: center;
-    }
-}
-@media (max-width: 670px) {
-    .grid-container {
-        gap: 1rem;
-    }
-    header {
-        align-items: center;
-        text-align: center;
-    }
-    .navbar {
-        flex-direction: column;
-        padding: 20px 0;
-        gap: 15px;
-    }
-    .nav-links {
-        position: absolute;
-        top: 100%;
-        left: 0;
-        width: 100%;
-        flex-direction: column;
-        gap: 15px;
-        background-color: var(--primary);
-        max-height: 0;
-        overflow: hidden;
-        transition: max-height 0.3s ease;
-    }
-    .menu-toggle-input:checked ~ .nav-links {
-        max-height: 400px;
-        padding: 10px 0;
-    }
-    .projects {
-        grid-template-columns: 1fr;
-    }
-    section {
-        padding: 60px 0;
-    }
-    .hero {
-        padding: 1rem;
-    }
-    .btn {
-        max-width: 100%;
-        text-align: center;
-    }
-
-  .menu-toggle {
-    display: flex;
-}
-}
-@media (max-width: 400px) {
-    .timeline {
-        flex-direction: column;
-    }
-    .timeline-item {
-        margin-right: 0;
-        margin-bottom: 0.5rem;
-    }
-}
-
-/*
 CONTACT PAGE
 (moved from inline styles; colors mapped to the design variables)
 */
@@ -476,7 +421,7 @@ CONTACT PAGE
 }
 .contact-container {
     display: grid;
-    grid-template-columns: 1fr 1.5fr;
+    grid-template-columns: 1fr;
     gap: 2.5rem;
     max-width: 1100px;
     margin: 0 auto;
@@ -648,16 +593,67 @@ CONTACT PAGE
 .form-status.success { color: var(--success); }
 .form-status.error { color: var(--error); }
 
-@media (max-width: 768px) {
-    .contact-container {
-        grid-template-columns: 1fr;
+
+/*
+RESPONSIVE DESIGN - MOBILE FIRST
+Base styles above target small screens.
+Each min-width query below ADDS complexity as the screen grows.
+*/
+
+/* --- Tablet and up (671px+) --- */
+@media (min-width: 671px) {
+    section {
+        padding: 60px 0;
+    }
+    .section-heading h1 {
+        font-size: 2.5rem;
+    }
+
+    /* nav becomes a horizontal bar; hamburger no longer needed */
+    .menu-toggle {
+        display: none;
+    }
+    .nav-links {
+        position: static;
+        flex-direction: row;
+        gap: 30px;
+        width: auto;
+        max-height: none;
+        overflow: visible;
+        background-color: transparent;
+        padding: 0;
+    }
+
+    .timeline {
+        flex-direction: row;
+    }
+    .hero-btn {
+        flex-direction: row;
         gap: 1.5rem;
     }
-    .contact-section {
-        padding: 1rem;
+    .projects {
+        grid-template-columns: repeat(2, 1fr);
     }
-    .contact-info,
-    .contact-form-wrapper {
-        padding: 1.5rem;
+    .contact-container {
+        grid-template-columns: 1fr 1.5fr;
+    }
+    .contact-section {
+        padding: 1rem 2rem 3rem;
+    }
+}
+
+/* --- Desktop and up (901px+) --- */
+@media (min-width: 901px) {
+    section {
+        padding: 80px 0;
+    }
+    .section-heading h1 {
+        font-size: 3rem;
+    }
+    .projects {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    .hero h1 {
+        font-size: 2.5rem;
     }
 }
