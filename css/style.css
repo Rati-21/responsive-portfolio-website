@@ -345,11 +345,7 @@ About Page
     display: block;
     margin-bottom: 0.5rem;
 }
-.timeline > .timeline-item {
-    display: flex;
-    align-items: flex-start;
-    flex: 1;
-}
+
 
 /*
 INTERACTION
